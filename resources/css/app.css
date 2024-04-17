@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@layer utilities {
+    * {
+        letter-spacing: 0.15em;
+        scroll-behavior: smooth !important;
+    }
+    body {
+        scroll-behavior: smooth !important;
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .title {
+        font-family: "Playfair Display", serif !important;
+    }
+
+    .shadow__1 {
+        -webkit-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow__2 {
+        -webkit-box-shadow: 10px 10.5px 10px -0.5px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 10px 10.5px 10px -0.5px rgba(0, 0, 0, 0.3);
+        box-shadow: 10px 10.5px 10px -0.5px rgba(0, 0, 0, 0.3);
+    }
+
+    /*  */
+    button {
+        @apply duration-300 scale-100 active:scale-95;
+    }
+}
