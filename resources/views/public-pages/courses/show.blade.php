@@ -5,10 +5,10 @@
         <div class="h-[70vh] w-full pt-14 px-5" style="background: url('/images/course-4.jpg') no-repeat center/cover">
             {{-- left Test --}}
             <div class=" lg:pl-20">
-                <h1 class="text-white font-bold text-3xl lg:text-5xl uppercase drop-shadow-md pb-8">Découverte de Laravel 10
+                <h1 class="text-white font-bold text-3xl lg:text-5xl uppercase drop-shadow-md pb-8">{{ $course->title }}
                 </h1>
-                <p class="max-w-4xl text-white text-xl leading-10 mb-16">Laravel est un framework PHP qui vous permettra
-                    d'écrire une application web plus rapidement et plus proprement.</p>
+                <p class="max-w-4xl text-white text-xl leading-10 mb-16">{{ Str::limit($course->description, 200, '...') }}
+                </p>
                 <button {{-- onclick="window.location='{{ route('register') }}'" --}}
                     class="border-primary border-2 hover:text-primary scale-95 hover:scale-100 rounded pl-3 pr-8 py-3 text-lg  text-white active:scale-95 duration-500 flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -90,8 +90,9 @@
                     </div>
                     {{-- video card --}}
                     <div class="">
-                        <video controls poster="" muted class="w-full h-[400px] rounded bg-slate-800">
-                            <source src="https://www.youtube.com/watch?v=7caUxoKk8vU" />
+                        <video controls poster="{{ asset('images/default_course_image.webp') }}" muted
+                            class="w-full h-[400px] rounded bg-slate-800">
+                            <source src="{{ asset('video.mp4') }}" />
                         </video>
                     </div>
                 </div>

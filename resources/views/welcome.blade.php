@@ -68,13 +68,13 @@
                 </div>
                 <!-- cards -->
                 <div
-                    class="snap-x flex items-center 2xl:justify-center lg:grid lg:grid-cols-3 2xl:grid-cols-4 overflow-x-auto lg:overflow-hidden gap-5 xl:gap-10 py-10 pt-16 px-1">
+                    class="snap-x flex items-center 2xl:justify-center lg:grid lg:grid-cols-3 2xl:grid-cols-4 overflow-x-auto lg:overflow-hidden gap-5 py-10 pt-16 px-1">
                     @foreach ($courses as $course)
-                        <div onclick="window.location='{{ route('courses.show', ['id' => $course->id]) }}'"
-                            class="cursor-pointer snap-end p-2 rounded-lg relative w-full  h-[350px] drop-shadow-lg shadow__1 max-w-[400px] min-w-[240px] overflow-hidden group">
+                        <div
+                            class="snap-end p-2 rounded-lg relative w-full  h-[350px] drop-shadow-lg shadow__1 max-w-[400px] min-w-[240px] flex flex-col overflow-hidden group">
                             <!-- image -->
                             <div
-                                class="relative h-[170px] w-full overflow-hidden rounded-lg flex items-center justify-center">
+                                class="relative h-[170px] w-full overflow-hidden rounded-lg flex items-center justify-center shrink-0">
                                 <img src="images/course-1.jpg" alt="" loading=""
                                     class="bg-center group-hover:scale-110 duration-500 transition-transform object-cover rounded-lg h-full w-full">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black to-white opacity-40 rounded-lg">
@@ -84,37 +84,37 @@
                                     details</button>
                             </div>
                             <!-- details -->
-                            <div class="pt-2 font-medium">
-                                <h4 class="text-primary uppercase">{{ $course->category }}
-                                </h4>
-                                <h4 class="text-sm py-2 font-bold">
-                                    {{ Str::limit($course->title, 35, '...') }}
-                                </h4>
+                            <div class="pt-2 font-medium flex flex-col justify-between h-full text-sm">
+                                {{-- title and category --}}
+                                <div class="">
+                                    <h4 class="text-primary uppercase text-base">{{ $course->domain->name }}
+                                    </h4>
+                                    <h4 class="font-medium hover:underline ">
+                                        <a class="py-2 inline-block hover:text-secondary"
+                                            href="{{ route('courses.show', ['id' => $course->id]) }}">
+                                            {{ Str::limit($course->title, 30, '...') }}
+                                        </a>
+                                    </h4>
+                                </div>
                                 {{-- description --}}
-                                <p class="text-sm font-normal">
-                                    {{ Str::limit($course->description, 100, '...') }}
+                                <p class="font-normal">
+                                    {{ Str::limit($course->description, 90, '...') }}
                                 </p>
                                 {{-- level and total cours --}}
-                                <div class="flex flex-wrap gap-5 items-center py-3 text-xs">
+                                <div class="flex flex-wrap gap-3 items-center py-3">
                                     <div class="flex items-center gap-1">
                                         <i class="fa fa-align-left text-secondary" aria-hidden="true"></i>
-                                        <span>Lessons: 3</span>
+                                        <span>Chapter: 3</span>
                                     </div>
                                     <div class="flex items-center gap-1">
-                                        <i class="fa fa-clock-o text-primary" aria-hidden="true"></i>
+                                        <i class="fa fa-clock text-secondary" aria-hidden="true"></i>
                                         <span>8 h</span>
                                     </div>
                                     <div class="flex items-center gap-1">
-                                        <i class="fa fa-signal text-secondary" aria-hidden="true"></i>
-                                        <span>{{ $course->level }}</span>
+                                        <x-dynamic-component :component="'icon-' . $course->level . '-level'" class="text-secondary" />
+                  
+                                        <span class="capitalize">{{ $course->level }}</span>
                                     </div>
-                                </div>
-
-                                <!-- start btn -->
-                                <div class="z-20 absolute bottom-2 left-2 flex justify-between items-center">
-                                    {{-- <button type="button"
-                                    class="bg-primary text-sm opacity-90 hover:bg-[#7c62fb] tracking-wider  hover:opacity-100 rounded px-3 py-1 text-white scale-100 active:scale-95 font-medium duration-500">Start
-                                    course</button> --}}
                                 </div>
                             </div>
 

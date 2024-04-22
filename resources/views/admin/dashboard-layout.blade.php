@@ -23,7 +23,7 @@
 <body class="font-sans antialiased">
     <div class="flex">
         {{-- left sideMenu --}}
-        @include('participant.sidemenu')
+        @include('admin.sidemenu')
         {{-- right --}}
         <div class="w-full h-screen flex flex-col">
             @include('admin.navigation')

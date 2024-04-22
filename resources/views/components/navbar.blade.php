@@ -37,6 +37,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -54,8 +57,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-        @endauth
-        @if (!Auth::user())
+        @else
             <div class="hidden sm:flex gap-5 items-center">
                 <button onclick="window.location='{{ route('login') }}'" class="hover:text-primary duration-500">
                     Log in
@@ -65,6 +67,6 @@
                     Register
                 </button>
             </div>
-        @endif
+        @endauth
     </div>
 </header>
