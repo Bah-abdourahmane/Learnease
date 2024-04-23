@@ -23,7 +23,7 @@ class VideoFormRequest extends FormRequest
     {
         return [
             "title" => ['required', 'string', 'max:255'],
-            "url" => ['required', 'string'],
+            "url" => ['required', 'mimetypes:video/*','max:50000'],
             "chapter_id" => ['required'],
         ];
     }

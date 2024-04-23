@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,10 @@ class PublicController extends Controller
     }
     public function course_details($id)
     {
-        $course = Course::findOrFail($id);
+        $course = Course::with('domain')->findOrFail($id);
+        $chapters = Chapter::where('course_id', $id)->get();
+        // $videos = Chapter::where('chapter_id', $chapters->$id)->get();
+        // dd($videos);
         return view('public-pages.courses.show', compact("course"));
     }
     public function course_tutoriel($id)

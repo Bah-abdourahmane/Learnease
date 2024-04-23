@@ -4,7 +4,7 @@
         <div class="font-semibold text-xl cursor-pointer">
             <a href="/">Learn<span class="text-secondary">Ease</span></a>
         </div>
-        <div class="hidden md:flex gap-10 items-center ">
+        <div class="hidden lg:flex gap-10 items-center ">
             <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
                 Courses
             </x-nav-link>
