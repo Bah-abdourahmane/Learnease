@@ -72,56 +72,9 @@
                 <div
                     class="snap-x flex items-center 2xl:justify-center lg:grid lg:grid-cols-3 2xl:grid-cols-4 overflow-x-auto lg:overflow-hidden gap-5 py-10 pt-16 px-1">
                     @foreach ($courses as $course)
-                        <div
-                            class="snap-end p-2 rounded-lg relative w-full  h-[350px] drop-shadow-lg shadow__1 max-w-[400px] min-w-[240px] flex flex-col overflow-hidden group">
-                            <!-- image -->
-                            <div
-                                class="relative h-[170px] w-full overflow-hidden rounded-lg flex items-center justify-center shrink-0">
-                                @if ($course->cover_photo)
-                                    <img src="{{ $course->imageUrl() }}" alt=""
-                                        class="bg-center rounded-l-lg group-hover:scale-110 duration-500 transition-transform object-cover  h-full w-full" />
-                                @else
-                                    <img src="{{ asset('/images/default_course_image.webp') }}" alt=""
-                                        class="bg-center rounded-l-lg group-hover:scale-110 duration-500 transition-transform object-cover  h-full w-full" />
-                                @endif
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-white opacity-40 rounded-lg">
-                                </div>
-                                <button onclick="window.location='{{ route('courses.show', ['id' => $course->id]) }}'"
-                                    class="bg-white/70 p-2 px-3 font-medium tracking-wide rounded absolute  z-50 hidden group-hover:block duration-500 scale-100">See
-                                    details</button>
-                            </div>
-                            <!-- details -->
-                            <div class="pt-2 font-medium flex flex-col justify-between h-full text-sm">
-                                {{-- title and category --}}
-                                <div class="">
-                                    <h4 class="text-primary uppercase text-base">{{ $course->domain->name }}
-                                    </h4>
-                                    <h4 class="font-medium hover:underline ">
-                                        <a class="py-2 inline-block hover:text-secondary"
-                                            href="{{ route('courses.show', ['id' => $course->id]) }}">
-                                            {{ Str::limit($course->title, 30, '...') }}
-                                        </a>
-                                    </h4>
-                                </div>
-                                {{-- description --}}
-                                <p class="font-normal">
-                                    {{ Str::limit($course->description, 80, '...') }}
-                                </p>
-                                {{-- level and total cours --}}
-                                <div class="flex flex-wrap gap-3 items-center py-3">
-                                    <div class="flex items-center gap-1">
-                                        <i class="fa fa-align-left text-secondary" aria-hidden="true"></i>
-                                        <span>Chapter: 3</span>
-                                    </div>
-                                    <div class="flex items-center gap-1">
-                                        <x-dynamic-component :component="'icon-' . $course->level . '-level'" class="text-secondary" />
-
-                                        <span class="capitalize">{{ $course->level }}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        @include('partials.home.course-card', [
+                            'course' => $course,
+                        ])
                     @endforeach
                 </div>
             </div>
@@ -170,21 +123,13 @@
                     All</button> --}}
             </div>
             <!-- cards wrappers -->
-            <div class="max-w-7xl mx-auto flex items-center lg:grid lg:grid-cols-4 flex-wrap gap-5 py-10 pt-16">
+            <div class="max-w-7xl mx-auto flex items-center lg:grid lg:grid-cols-3 flex-wrap gap-5 py-10 pt-16">
                 {{-- card 1 --}}
                 <div>
                     @include('partials.home.testimonial', [
                         'name' => 'Bah Abdou',
                         // 'content' => 'content here!',
-                        'photo' => 'images/teacher-1.jpg',
-                    ])
-                </div>
-                {{-- card 2 --}}
-                <div>
-                    @include('partials.home.testimonial', [
-                        'name' => 'Anonymous',
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, id?',
-                        'photo' => 'images/teacher-1.jpg',
+                        'photo' => 'images/teacher-5.jpg',
                     ])
                 </div>
                 {{-- card 3 --}}
@@ -192,7 +137,7 @@
                     @include('partials.home.testimonial', [
                         'name' => 'Imane chou',
                         // 'content' => 'content here!',
-                        'photo' => 'images/teacher-1.jpg',
+                        'photo' => 'images/teacher-3.jpg',
                     ])
                 </div>
                 {{-- card 4 --}}
@@ -200,7 +145,7 @@
                     @include('partials.home.testimonial', [
                         'name' => 'Aimane Pourquoi',
                         // 'content' => 'content here!',
-                        'photo' => 'images/teacher-1.jpg',
+                        // 'photo' => 'images/teacher-6.jpg',
                     ])
                 </div>
             </div>

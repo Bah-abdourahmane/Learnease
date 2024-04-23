@@ -4,13 +4,17 @@
         {{-- banner --}}
         <div class="h-[70vh] w-full pt-14 px-5" style="background: url('/images/course-4.jpg') no-repeat center/cover">
             {{-- left Test --}}
-            <div class=" lg:pl-20">
-                <h1 class="text-white font-bold text-3xl lg:text-5xl uppercase drop-shadow-md pb-8">{{ $course->title }}
-                </h1>
-                <p class="max-w-4xl text-white text-xl leading-10 mb-16">{{ Str::limit($course->description, 200, '...') }}
-                </p>
+            <div class="lg:pl-20 flex flex-col justify-between h-full pb-10">
+                <div class="">
+                    <h1 class="max-w-4xl text-primary text-xl leading-10 ">
+                        {{ $course->domain->name }}
+                    </h1>
+                    <h3 class="text-white font-bold text-3xl lg:text-5xl uppercase drop-shadow-md pb-8">
+                        {{ $course->title }}
+                    </h3>
+                </div>
                 <button {{-- onclick="window.location='{{ route('register') }}'" --}}
-                    class="border-primary border-2 hover:text-primary scale-95 hover:scale-100 rounded pl-3 pr-8 py-3 text-lg  text-white active:scale-95 duration-500 flex items-center gap-3">
+                    class="border-primary border-2 hover:text-primary rounded pl-3 pr-8 py-3 text-lg  text-white w-fit duration-500 flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

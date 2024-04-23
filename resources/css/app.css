@@ -16,6 +16,34 @@
         font-family: "Poppins", sans-serif !important;
     }
 
+    .gradient__border_1 {
+        border: 1px solid transparent;
+        background-image: linear-gradient(to right, #ff0000, #0000ff);
+    }
+    .gradient__course_border_1 {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gradient__course_border_1::before {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 140%;
+        background: linear-gradient(to top, #967dff, #fea115bc);
+        z-index: -1;
+        animation: rotate 8s infinite linear;
+    }
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
     .title {
         font-family: "Playfair Display", serif !important;
     }
