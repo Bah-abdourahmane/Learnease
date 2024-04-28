@@ -8,13 +8,13 @@
             <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
                 Courses
             </x-nav-link>
-            <x-nav-link href="about" :active="request()->routeIs('about')">
+            <x-nav-link :href="route('about.index')" :active="request()->routeIs('about.index')">
                 About
             </x-nav-link>
-            <x-nav-link href="forum" :active="request()->routeIs('forum')">
+            <x-nav-link :href="route('forum.index')" :active="request()->routeIs('forum.index')">
                 Forum
             </x-nav-link>
-            <x-nav-link href="contact" :active="request()->routeIs('contact')">
+            <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')">
                 Contact
             </x-nav-link>
         </div>

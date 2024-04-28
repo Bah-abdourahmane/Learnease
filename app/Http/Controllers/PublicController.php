@@ -3,30 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chapter;
+use App\Models\Contact;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
+    // HOME PAGE CONTROLLER
     public function home()
     {
         $courses =  Course::with('domain')->orderBy('updated_at', 'desc')->limit(6)->get();
         return view('public-pages.home', compact('courses'));
     }
+    // =================================================
+
     public function about()
     {
         return view("public-pages.about.about");
     }
+
+    // CONTACT CONTROLLER
     public function contact()
     {
         return view("public-pages.contact.contact");
     }
+    public function contact_store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'message' => 'required|string'
+        ]);
+        Contact::create($validatedData);
 
+        return redirect()->route('contact.index')->with('success', 'Votre demande a été envoyée');
+    }
+    // ===================================================
+
+    // FORUMS CONTROLLER
     public function forum()
     {
-        return view("public-pages.forum.forum");
+        return view("public-pages.forum.index");
     }
+    public function forum_detail($id)
+    {
+        return view("public-pages.forum.show");
+    }
+    public function forum_create()
+    {
+        return view("public-pages.forum.create");
+    }
+    public function forum_store()
+    {
+    }
+    // =================================================
 
+    // COURSES CONTROLLER
     public function courses()
     {
         $courses = Course::orderBy('updated_at', 'desc')->paginate(10);
@@ -35,8 +67,6 @@ class PublicController extends Controller
     public function course_details($id)
     {
         $course = Course::with('chapters.videos')->find($id);
-        // dd($course);
-
         return view('public-pages.courses.show', compact("course"));
     }
     public function course_tutoriel($id)
@@ -44,4 +74,5 @@ class PublicController extends Controller
         $course = Course::findOrFail($id);
         return view('public-pages.courses.tutoriel', compact("course"));
     }
+    // ====================================================
 }
