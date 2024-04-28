@@ -18,9 +18,13 @@ Route::controller(PublicController::class)->group(function () {
   Route::get('/courses',  'courses')->name('courses.index');
   Route::get('/courses/{id}',  'course_details')->name('courses.show');
   Route::get('/course/tutoriel/{id}', 'tutoriel')->name('courses.tutoriel');
-  Route::get('/about',  'abdout');
-  Route::get('/forum',  'forum');
-  Route::get('/contact',  'contact');
+  Route::get('/about',  'about')->name('about.index');
+  Route::get('/forum',  'forum')->name('forum.index');
+  Route::get('/forum/{id}',  'forum_detail')->name('forum.show');
+  Route::get('/forum/create',  'forum_create')->name('forum.create');
+  Route::post('/forum',  'forum_store')->name('forum.store');
+  Route::get('/contact',  'contact')->name('contact.index');
+  Route::post('/contact',  'contact_store')->name('contact.store');
 });
 
 // Controller middleware pour la redirection en fonction des roles
