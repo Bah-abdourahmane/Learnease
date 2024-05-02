@@ -25,17 +25,17 @@
 
 <body class="h-screen w-full overflow-hidden">
     <div class="flex">
-        {{-- left side menu --}}
-        @include('participant.sidemenu')
-        {{-- right side displayed pages --}}
-        <div class="p-5">
-            {{-- @include('layouts.navigation') --}}
-            <div class="">
+        {{-- left sideMenu --}}
+        @include('participant.partials.sidemenu')
+        {{-- right --}}
+        <div class="w-full h-screen flex flex-col">
+            @include('admin.navigation')
+            <!-- Page Content -->
+            <main class="flex-grow overflow-y-auto">
                 @yield('content')
-            </div>
+            </main>
         </div>
     </div>
-
 </body>
 
 </html>

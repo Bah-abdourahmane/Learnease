@@ -1,6 +1,6 @@
-@extends('layouts.app-layout')
+@extends('participant.dashboard-layout')
 @section('content')
-    <div class="h-full bg-third text-white">
+    <div class=" bg-third text-white">
         {{-- banner --}}
         <div class="lg:h-[70vh] md:h-[40vh] h-[70vh] w-full pt-14 px-5"
             style="background: url('{{ asset('/images/course-4.jpg') }}') no-repeat center/cover">
@@ -34,7 +34,7 @@
             {{-- right Image --}}
         </div>
         {{-- Cours content details --}}
-        <div class="flex justify-between  gap-5 flex-wrap p-5 lg:px-24 py-10">
+        <div class="flex justify-between  gap-5 flex-wrap px-5 py-10">
             {{-- left --}}
             <div class="h-fit w-full lg:basis-[35%]">
                 <h1 class="text-2xl mb-5">Chapitres</h1>

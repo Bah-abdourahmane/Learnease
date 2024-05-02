@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
-        return view('teacher.dashborad');
+        return view('teacher.dashboard');
     }
     public function register()
     {
