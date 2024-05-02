@@ -123,12 +123,13 @@
                     All</button> --}}
             </div>
             <!-- cards wrappers -->
-            <div class="max-w-7xl mx-auto flex items-center lg:grid lg:grid-cols-3 flex-wrap gap-5 py-10 pt-16">
+            <div class="max-w-8xl mx-auto flex items-center lg:grid lg:grid-cols-3 lg:items-stretch flex-wrap gap-5 py-10 pt-16">
                 {{-- card 1 --}}
                 <div>
                     @include('partials.home.testimonial', [
                         'name' => 'Bah Abdou',
-                        // 'content' => 'content here!',
+                        'content' =>
+                            "je suis très content de mon expérience ici. Les instructeurs sont compétents et les cours sont faciles à suivre. Merci pour cette opportunité d'apprentissage en ligne !.",
                         'photo' => 'images/teacher-5.jpg',
                     ])
                 </div>
@@ -136,7 +137,8 @@
                 <div>
                     @include('partials.home.testimonial', [
                         'name' => 'Imane chou',
-                        // 'content' => 'content here!',
+                        'content' =>
+                            "Les cours sont excellents ! J'ai appris énormément de choses utiles et les vidéos sont très bien expliquées. Je recommande vivement ce site !",
                         'photo' => 'images/teacher-3.jpg',
                     ])
                 </div>
@@ -144,7 +146,8 @@
                 <div>
                     @include('partials.home.testimonial', [
                         'name' => 'Aimane Pourquoi',
-                        // 'content' => 'content here!',
+                        'content' =>
+                            "Ce site m'a aidé à améliorer mes compétences rapidement. Les exercices pratiques sont très instructifs et j'ai pu appliquer ce que j'ai appris dans mes projets. Merci pour cette plateforme de qualité !",
                         // 'photo' => 'images/teacher-6.jpg',
                     ])
                 </div>
