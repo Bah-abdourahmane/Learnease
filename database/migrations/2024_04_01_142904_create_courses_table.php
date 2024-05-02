@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('level', ['beginner', 'intermediate', 'advenced'])->default("beginner");
             $table->string('cover_photo')->nullable();
-            $table->foreignId('domains_id')->constrained('domains');
+            $table->foreignId('domains_id')->constrained('domains'); //onDelete('cascade)
             $table->foreignId('instructor_id')->constrained('users');
             $table->boolean('is_approved')->default(false);
             $table->dateTime('publish_date')->nullable();

@@ -11,7 +11,7 @@ class Video extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'url', 'chapter_id'
+        'title', 'url', 'chapter_id', 'description', 'duration'
     ];
 
     public function chapter()
@@ -28,7 +28,7 @@ class Video extends Model
     {
         parent::boot();
         static::deleting(function ($video) {
-            if ($video->cover_photo) {
+            if ($video->url) {
                 Storage::disk('public')->delete($video->url);
             }
         });

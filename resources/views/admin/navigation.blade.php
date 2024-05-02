@@ -1,16 +1,32 @@
+@php
+    $url = request()->url();
+    $path = parse_url($url, PHP_URL_PATH);
+    // $pageName = basename($path);
+    $segments = explode('/', trim($path, '/'));
+    if (
+        count($segments) >= 3 &&
+        $segments[0] === 'participant' &&
+        $segments[1] === 'courses' &&
+        is_numeric($segments[2])
+    ) {
+        $subPath = 'course';
+    } else {
+        $subPath = implode('/', array_slice($segments, -1));
+    }
+@endphp
 <nav x-data="{ open: false }" class="bg-third border-b border-gray-700 text-white">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:pr-6 lg:pr-8">
         <div class="flex items-center justify-between h-16">
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="capitalize">
+                {{ $subPath }}
             </x-nav-link>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            class="inline-flex items-center p-2 border border-primary text-sm font-medium rounded-full text-white  transition ease-in-out duration-150">
                             <div class="">{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

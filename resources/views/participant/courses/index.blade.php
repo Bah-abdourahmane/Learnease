@@ -1,9 +1,7 @@
-@extends('layouts.app-layout')
+@extends('participant.dashboard-layout')
 @section('content')
-    <div class="w-full h-full p-5 lg:px-24">
-        <h2 class="title font-bold text-2xl md:text-3xl mb-10 tracking-wider">Cours en libre accès</h2>
-        {{-- courses list container --}}
-        <div class="w-full h-full space-y-5">
+    <div class="w-full p-5">
+        <div class="space-y-5">
             @foreach ($courses as $course)
                 <div
                     class="flex items-center lg:gap-5 flex-wrap lg:flex-nowrap rounded-lg lg:max-h-[250px] lg:min-h-[200px] shadow__1">
@@ -25,7 +23,7 @@
                             </h4>
                             <h4 class="font-bold">
                                 <a class="hover:text-primary py-2"
-                                    href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a>
+                                    href="{{ route('participant.courses.show', $course->id) }}">{{ $course->title }}</a>
                             </h4>
                             {{-- level and total cours --}}
                             <div class="flex flex-wrap gap-5 items-center py-3">

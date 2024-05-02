@@ -22,6 +22,12 @@
                     name="url" :value="old('url')" accept="video/*" required />
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
+            <div>
+                <x-input-label for="duration" :value="__('Video Duration')" />
+                <x-text-input id="duration" class="block mt-1 w-full bg-white outline-none border p-2" type="text"
+                    name="duration" :value="old('url')" placeholder="Ex: 10 min ou 10 s" required />
+                <x-input-error :messages="$errors->get('duration')" class="mt-2" />
+            </div>
             {{-- Chapters --}}
             <div>
                 <x-input-label for="chapter_id" :value="__('Chapter')" class="" />
@@ -36,13 +42,13 @@
                 </select>
                 <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
             </div>
-            {{-- description
+            {{-- description --}}
             <div>
                 <x-input-label for="description" :value="__('Description')" />
                 <textarea class="w-full resize-none border-gray-300 focus:border-primary focus:ring-primary rounded-md shadow-sm"
                     id="description" name="description" rows="4" required></textarea>
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
-            </div> --}}
+            </div>
             {{-- submit button --}}
             <button type="submit"
                 class="rounded duration-300 hover:bg-primary mt-5 px-5 py-2 border hover:text-white border-primary">

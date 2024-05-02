@@ -13,9 +13,9 @@ class HomeController extends Controller
         if (Auth::user()->role === 'admin') {
             return to_route('admin.index');
         } elseif (Auth::user()->role === 'teacher') {
-            return view('teacher.dashboard');
+            return to_route('teacher.index');
         } else if (Auth::user()->role === 'participant') {
-            return view('participant.dashboard');
+            return to_route('participant.index');
         } else return abort(401);
     }
 }

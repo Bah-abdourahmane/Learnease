@@ -19,6 +19,7 @@ export default {
                 secondary: "#fea115",
                 third: "#050215",
                 blackColor: "#1b1b1b",
+                darkblue: "#22244d",
             },
         },
     },

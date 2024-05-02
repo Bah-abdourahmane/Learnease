@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Contact;
 use App\Models\Course;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -61,7 +62,7 @@ class PublicController extends Controller
     // COURSES CONTROLLER
     public function courses()
     {
-        $courses = Course::orderBy('updated_at', 'desc')->paginate(10);
+        $courses = Course::orderBy('updated_at', 'desc')->paginate(5);
         return view('public-pages.courses.index', compact("courses"));
     }
     public function course_details($id)
@@ -73,6 +74,14 @@ class PublicController extends Controller
     {
         $course = Course::findOrFail($id);
         return view('public-pages.courses.tutoriel', compact("course"));
+    }
+    public function video_playlist($courseID, $videoID, Request $request)
+    {
+        $autoplay = $request->has('autoplay');
+        // dd($request); 
+        $course = Course::with('chapters.videos')->find($courseID);
+        $currentVideo = Video::findOrFail($videoID);
+        return view('public-pages.courses.video-playlist', compact("course", "currentVideo"));
     }
     // ====================================================
 }
