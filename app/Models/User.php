@@ -53,6 +53,8 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
+
+
     public function skillLevels()
     {
         return $this->belongsToMany(SkillLevel::class, 'user_skill_level', 'user_id', 'skill_level_id');

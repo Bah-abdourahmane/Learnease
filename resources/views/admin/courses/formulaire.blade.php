@@ -32,7 +32,7 @@
             </div>
             {{-- domains --}}
             <div>
-                <x-input-label for="domains_id" :value="__('Training Category')" class="" />
+                <x-input-label for="domains_id" :value="__('Domain')" class="" />
                 <select id="domains_id" name="domains_id"
                     class= 'border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary w-full py-2'
                     required>
