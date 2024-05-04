@@ -51,7 +51,7 @@ class PublicController extends Controller
     }
     public function forum_detail($id)
     {
-        $forum = Forum::with('comments')->find($id);
+        $forum = Forum::with('comments')->findOrFail($id);
         // dd($forum);
         return view("public-pages.forum.show", compact("forum"));
     }
