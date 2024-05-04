@@ -2,8 +2,8 @@
 @section('content')
     <div class="w-full h-full p-5 lg:px-24 mb-10">
         <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h1 class="text-3xl font-bold mb-4">Titre du Forum</h1>
-            <p class="text-gray-600 mb-4">Description du forum.</p>
+            <h1 class="text-3xl font-bold mb-4">{{ $forum->title }}</h1>
+            <p class="text-gray-600 mb-4">{{ $forum->content }}</p>
             <div class="flex items-center justify-between">
                 <div class="flex items-center text-sm text-gray-500">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -11,9 +11,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
                         </path>
                     </svg>
-                    <span>10 commentaires</span>
+                    <span>{{ $forum->comments->count() }}
+                        commentaire{{ $forum->comments->count() > 1 ? 's' : '' }}</span>
                 </div>
-                <span class="text-xs text-gray-400">Il y a 3 heures</span>
+                <span class="text-xs text-gray-400">Il y a {{ $forum->created_at->format('H:i:s') }}</span>
             </div>
         </div>
         <!-- Section des commentaires -->
@@ -21,14 +22,17 @@
             <h2 class="text-xl font-semibold mb-4">Commentaires</h2>
             <!-- Liste des commentaires -->
             <div class="space-y-4">
-                <div class="border border-gray-300 rounded-lg p-4">
-                    <p>Contenu du commentaire.</p>
-                    <div class="flex items-center justify-between mt-2">
-                        <span class="text-sm text-gray-500">Nom de l'utilisateur</span>
-                        <span class="text-xs text-gray-400">Il y a 1 heure</span>
+                @forelse ($forum->comments as $item)
+                    <div class="border border-gray-300 rounded-lg p-4">
+                        <p>Contenu du commentaire.</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-sm text-gray-500">Nom de l'utilisateur</span>
+                            <span class="text-xs text-gray-400">Il y a {{ $item->created_at->format('H')}} heure</span>
+                        </div>
                     </div>
-                </div>
-                <!-- Ajouter d'autres commentaires statiques ici -->
+                @empty
+                    <p class="p-4 font-medium">Pas de commentaire.</p>
+                @endforelse
             </div>
 
             <!-- Formulaire de réponse (statique) -->

@@ -14,46 +14,28 @@
         @endauth
         {{-- list of forum --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {{-- card 1 --}}
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="text-xl font-semibold mb-2">
-                    <a href="{{ route('forum.show', ['id' => '1']) }}" class="hover:text-primary">
-                        Sujet de discussion 1
-                    </a>
-                </h2>
-                <p class="text-gray-600 mb-4">Résumé du sujet de discussion 1.</p>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center text-sm text-gray-500">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                        <span>10 commentaires</span>
+            @foreach ($forums as $item)
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">
+                        <a href="{{ route('forum.show', ['id' => $item->id]) }}" class="hover:text-primary">
+                            {{ $item->title }}
+                        </a>
+                    </h2>
+                    <p class="text-gray-600 mb-4">{{ Str::limit($item->content, 130, '...') }}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                            <span>{{ $item->comments->count() }}
+                                commentaire{{ $item->comments->count() > 1 ? 's' : '' }}</span>
+                        </div>
+                        <span class="text-xs text-gray-400">Il y a {{ $item->created_at->format('H:i:s') }}</span>
                     </div>
-                    <span class="text-xs text-gray-400">Il y a 3 heures</span>
                 </div>
-            </div>
-            {{-- card 2 --}}
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="text-xl font-semibold mb-2">
-                    <a href="{{ route('forum.show', ['id' => '2']) }}" class="hover:text-primary">
-                        Sujet de discussion 2
-                    </a>
-                </h2>
-                <p class="text-gray-600 mb-4">Résumé du sujet de discussion 2.</p>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center text-sm text-gray-500">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                        <span>5 commentaires</span>
-                    </div>
-                    <span class="text-xs text-gray-400">Il y a 1 jour</span>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
