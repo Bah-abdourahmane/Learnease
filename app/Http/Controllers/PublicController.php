@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Contact;
 use App\Models\Course;
+use App\Models\Forum;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -44,11 +45,14 @@ class PublicController extends Controller
     // FORUMS CONTROLLER
     public function forum()
     {
-        return view("public-pages.forum.index");
+        $forums = Forum::with('comments')->get();
+        return view("public-pages.forum.index", compact("forums"));
     }
     public function forum_detail($id)
     {
-        return view("public-pages.forum.show");
+        $forum = Forum::with('comments')->find($id);
+        // dd($forum);
+        return view("public-pages.forum.show", compact("forum"));
     }
     public function forum_create()
     {
@@ -81,6 +85,7 @@ class PublicController extends Controller
         // dd($request); 
         $course = Course::with('chapters.videos')->find($courseID);
         $currentVideo = Video::findOrFail($videoID);
+        // dd($currentVideo); 
         return view('public-pages.courses.video-playlist', compact("course", "currentVideo"));
     }
     // ====================================================

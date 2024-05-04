@@ -20,7 +20,7 @@ Route::controller(PublicController::class)->group(function () {
   Route::get('/courses',  'courses')->name('courses.index');
   Route::get('/courses/{id}',  'course_details')->name('courses.show');
   Route::get('/course/tutoriel/{id}', 'tutoriel')->name('courses.tutoriel');
-  Route::get('/courses/{coursID}/{videoID}', 'video_playlist')->where(['videoID' => '[0-9]+', 'videoID' => '[0-9]+'])->name('courses.videos');
+  Route::get('/courses/{coursID}/{videoID}', 'video_playlist')->where(['coursID' => '[0-9]+', 'videoID' => '[0-9]+'])->name('courses.videos');
   Route::get('/about',  'about')->name('about.index');
   Route::get('/forum',  'forum')->name('forum.index');
   Route::get('/forum/{id}',  'forum_detail')->name('forum.show');
