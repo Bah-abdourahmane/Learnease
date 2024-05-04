@@ -14,7 +14,7 @@
         @endauth
         {{-- list of forum --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @foreach ($forums as $item)
+            @forelse ($forums as $item)
                 <div class="bg-white shadow-md rounded-lg p-6">
                     <h2 class="text-xl font-semibold mb-2">
                         <a href="{{ route('forum.show', ['id' => $item->id]) }}" class="hover:text-primary">
@@ -35,7 +35,9 @@
                         <span class="text-xs text-gray-400">Il y a {{ $item->created_at->format('H:i:s') }}</span>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p class="p-4 text-center font-medium">Pas de discussion</p>
+            @endforelse
         </div>
     </div>
 @endsection
