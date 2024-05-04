@@ -16,7 +16,7 @@ class PublicController extends Controller
     {
         $courses =  Course::with('domain')->orderBy('updated_at', 'desc')->limit(6)->get();
         // dd($courses);   
-        return view('public-pages.home', compact('courses'));
+        return view('public-pages.home', compact('courses')); 
     }
     // =================================================
 
