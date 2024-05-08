@@ -43,20 +43,9 @@
                 <div class="bg-[#22244d] rounded p-5 drop-shadow-md shadow-md">
                     {{-- paragraphes --}}
                     <div class="">
-                        <p class="text-sm leading-7 mb-5">Laravel est un framework PHP. créé par Taylor Otwell en 2011, qui
-                            permet de simplifier le développement d'applications web tout en gardant le code bien organisé.
-                            Depuis sa création, Laravel est devenu l'un des frameworks PHP les plus populaires et les plus
-                            utilisés, avec une communauté de développeurs en constante croissance.</p>
-                        <p class="text-sm leading-7 mb-5">Laravel est basé sur le modèle MVC (Modèle-Vue-Contrôleur), qui
-                            permet
-                            de séparer le code en trois couches distinctes pour une meilleure organisation et une
-                            maintenance
-                            plus facile. Le modèle s'occupe de la logique de l'application et de l'interaction avec la base
-                            de
-                            données, la vue est responsable de l'affichage de l'interface utilisateur, et le contrôleur agit
-                            comme une passerelle entre le modèle et la vue, en traitant les requêtes entrantes et en
-                            envoyant
-                            les données à la vue.</p>
+                        <p class="drop-shadow-xl">
+                            {{ $course->description }}
+                        </p>
                     </div>
                     {{-- video card --}}
                     <div class="">

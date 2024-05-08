@@ -56,8 +56,11 @@
                 </div>
             @endforeach
         </div>
-        <div class="mt-5 shadow-md p-3">
-            {{ $courses->links() }}
-        </div>
+        @if ($courses->count()>=5)
+            <div class="mt-5 shadow-md p-3">
+                {{ $courses->links() }}    
+            </div>
+        @endif
+
     </div>
 @endsection
