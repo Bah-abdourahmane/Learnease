@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Formation\CourseFormRequest;
 use App\Models\Course;
 use App\Models\Domain;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ class AdminCourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::with('domain', 'instructor')->orderBy('updated_at', 'desc')->paginate(10);
+        $courses = Course::with('domain', 'instructor', 'chapters')->orderBy('updated_at', 'desc')->paginate(6);
         return view('admin.courses.index', compact('courses'));
     }
 
@@ -41,9 +42,12 @@ class AdminCourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $course = Course::with('chapters.videos', 'instructor')->findOrFail($id);
+        // $currentVideo = $course->chapters?->first()->videos?->first();
+        // dd($currentVideo);
+        return view('admin.courses.show', compact("course"));
     }
 
     /**
@@ -64,6 +68,13 @@ class AdminCourseController extends Controller
 
         return  redirect()->route('admin.courses.index')
             ->with('success', "{$course->title} a bien été modifier.");
+    }
+    public function updateStatus(Request $request, $id)
+    {
+        $course = Course::findOrFail($id);
+        $course->is_approved = !$course->is_approved;
+        $course->save();
+        return redirect()->back()->with('success', 'Statut du cours mis à jour avec succès');
     }
 
     private function extractData(CourseFormRequest $request, Course $course): array

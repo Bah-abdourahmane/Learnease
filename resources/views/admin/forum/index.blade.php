@@ -1,18 +1,21 @@
-@extends('layouts.app-layout')
+@extends('admin.dashboard-layout')
 @section('content')
-    <div class="w-full h-full p-5 lg:px-24 mb-10">
+    <div class="w-full p-5 mb-5">
         {{-- title and searchbar --}}
-        <div class="mb-6 flex items-center flex-wrap justify-between gap-5">
+        <div class="mb-5 flex items-center flex-wrap justify-between gap-5">
             <h1 class="text-3xl font-bold">Forum de discussion</h1>
-            <input type="text" placeholder="Rechercher un forum..."
-                class="max-w-72 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+            <x-ui.custom-search-input />
         </div>
+        <a href="{{ route('admin.forums.create') }}"
+            class="inline-block rounded duration-300 hover:bg-primary my-3 px-5 py-2 border hover:text-white border-primary">
+            Add new Message
+        </a>
         {{-- list of forum --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @forelse ($forums as $item)
                 <div class="bg-white shadow-md rounded-lg p-6">
                     <h2 class="text-xl font-semibold mb-2">
-                        <a href="{{ route('forum.show', ['id' => $item->id]) }}" class="hover:text-primary">
+                        <a href="{{ route('admin.forums.show', $item->id) }}" class="hover:text-primary">
                             {{ $item->title }}
                         </a>
                     </h2>
@@ -27,7 +30,7 @@
                             <span>{{ $item->comments->count() }}
                                 commentaire{{ $item->comments->count() > 1 ? 's' : '' }}</span>
                         </div>
-                        <span class="text-xs text-gray-400">Il y a {{ $item->created_at->format('H:i:s') }}</span>
+                        <span class="text-xs text-gray-400">Publier a {{ $item->created_at->format('H:i') }}</span>
                     </div>
                 </div>
             @empty

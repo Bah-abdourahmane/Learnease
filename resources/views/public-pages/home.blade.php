@@ -62,7 +62,7 @@
                 <!-- top  bar for filtering -->
                 <div class="flex justify-between items-center gap-5 flex-wrap">
                     <h2 class="font-semibold text-lg"><span class="text-primary">&bull;</span>Popular courses</h2>
-                    <div class="flex items-center flex-wrap gap-5 font-medium">
+                    <div class="hidden fle items-center flex-wrap gap-5 font-medium">
                         <button class="active:scale-95 duration-300 text-primary">All course</button>
                         <button class="active:scale-95 duration-300 hover:text-primary">Bureautique</button>
                         <button class="active:scale-95 duration-300 hover:text-primary">Web Development</button>
@@ -81,12 +81,7 @@
         </section>
         <!-- our Teacher -->
         <section class="py-10 pt-0">
-            <div class="flex justify-between gap-5 items-center">
-                <h3 class="title lg:text-4xl font-bold">Our Experienced Mentors</h3>
-                <button
-                    class="bg-primary hover:scale-100 rounded px-8 py-2 text-white scale-100 active:scale-95 duration-500">View
-                    All</button>
-            </div>
+            <h3 class="title lg:text-4xl font-bold">Our Experienced Mentors</h3>
             <!-- cards wrappers -->
             <div class="flex items-center xl:justify-center xl:flex-nowrap flex-wrap gap-5 lg:gap-8 2xl:gap-16 py-10 pt-16">
                 {{-- card 1 --}}
@@ -117,13 +112,10 @@
         </section>
         <!-- Testimonial -->
         <section class="mb-10 py-10">
-            <div class="flex justify-between gap-5 items-center">
-                <h3 class="title lg:text-4xl font-bold">Testimonial</h3>
-                {{-- <button class="bg-primary rounded px-8 py-2 text-white">View
-                    All</button> --}}
-            </div>
+            <h3 class="title lg:text-4xl font-bold">Testimonial</h3>
             <!-- cards wrappers -->
-            <div class="max-w-8xl mx-auto flex items-center lg:grid lg:grid-cols-3 lg:items-stretch flex-wrap gap-5 py-10 pt-16">
+            <div
+                class="max-w-8xl mx-auto flex items-center lg:grid lg:grid-cols-3 lg:items-stretch flex-wrap gap-5 py-10 pt-16">
                 {{-- card 1 --}}
                 <div>
                     @include('partials.home.testimonial', [

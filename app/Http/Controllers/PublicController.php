@@ -14,7 +14,7 @@ class PublicController extends Controller
     // HOME PAGE CONTROLLER
     public function home()
     {
-        $courses =  Course::with('domain')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $courses =  Course::with('domain')->where('is_approved', true)->orderBy('updated_at', 'desc')->limit(6)->get();
         return view('public-pages.home', compact('courses'));
     }
     // =================================================
@@ -66,13 +66,15 @@ class PublicController extends Controller
     // COURSES CONTROLLER
     public function courses()
     {
-        $courses = Course::orderBy('updated_at', 'desc')->paginate(5);
+        $courses = Course::with('chapters')->where('is_approved', true)->orderBy('updated_at', 'desc')->paginate(5);
         return view('public-pages.courses.index', compact("courses"));
     }
     public function course_details($id)
     {
-        $course = Course::with('chapters.videos')->find($id);
-        return view('public-pages.courses.show', compact("course"));
+        $course = Course::with('chapters.videos')->findOrFail($id);
+        $firstVideoId = $course->chapters->first()->videos->first()->id;
+        // dd($firstVideoId);
+        return view('public-pages.courses.show', compact("course", "firstVideoId"));
     }
     public function course_tutoriel($id)
     {
@@ -81,11 +83,9 @@ class PublicController extends Controller
     }
     public function video_playlist($courseID, $videoID, Request $request)
     {
-        $autoplay = $request->has('autoplay');
         // dd($request); 
         $course = Course::with('chapters.videos')->find($courseID);
         $currentVideo = Video::findOrFail($videoID);
-        // dd($currentVideo); 
         return view('public-pages.courses.video-playlist', compact("course", "currentVideo"));
     }
     // ====================================================
