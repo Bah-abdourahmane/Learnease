@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/customCss.css', 'resources/js/app.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 
@@ -28,7 +28,7 @@
         <div class="w-full h-screen flex flex-col">
             @include('admin.navigation')
             <!-- Page Content -->
-            <main class="flex-grow overflow-y-auto px-5">
+            <main class="flex-grow overflow-y-auto">
                 @yield('content')
             </main>
         </div>

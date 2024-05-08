@@ -16,20 +16,15 @@
                         {{ Str::limit($course->description, 100, ' ...') }}
                     </p>
                 </div>
-                @if ($course->chapters->count() > 0)
-                    <button
-                        class="border-primary border-2 hover:bg-primary hover:text-white text-primary rounded pl-3 pr-8 py-3 text-lg  w-fit duration-500 flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
-                        </svg>
-                        <span>Commencer</span>
-                    </button>
+                @if (auth()->user())
+                    @include('partials.start-course-btn', [
+                        'path' => route('courses.videos', ['coursID' => $course->id, 'videoID' => $firstVideoId]),
+                    ])
+                @else
+                    @include('partials.start-course-btn', [
+                        'path' => route('login'),
+                    ])
                 @endif
-
             </div>
             {{-- right Image --}}
         </div>
@@ -65,9 +60,9 @@
                     </div>
                     {{-- video card --}}
                     <div class="">
-                        <video controls poster="{{ asset('images/default_course_image.webp') }}" muted
-                            class="w-full h-[400px] rounded bg-slate-800">
-                            <source src="{{ asset('video.mp4') }}" />
+                        <?php $currentVideo = $course->chapters->first()->videos->first(); ?>
+                        <video controls muted class="w-full h-[400px] rounded bg-slate-800">
+                            <source src="{{ asset($currentVideo->videoUrl()) }}" />
                         </video>
                     </div>
                 </div>
