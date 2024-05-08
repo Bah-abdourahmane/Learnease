@@ -24,6 +24,11 @@
                     Courses
                 </x-nav-link>
             </li>
+            <li class="duration-300 hover:bg-primary/70 rounded-md">
+                <x-nav-link class="hover:text-white block py-2 px-4" :href="route('admin.forums.index')" :active="request()->routeIs('admin.forums.index')">
+                    Forum
+                </x-nav-link>
+            </li>
         </ul>
     </div>
     {{-- user profile --}}

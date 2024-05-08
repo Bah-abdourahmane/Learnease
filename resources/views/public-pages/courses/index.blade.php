@@ -31,7 +31,7 @@
                             <div class="flex flex-wrap gap-5 items-center py-3">
                                 <div class="flex items-center gap-1">
                                     <i class="fa fa-align-left text-secondary" aria-hidden="true"></i>
-                                    <span>Lessons: 3</span>
+                                    <span>Chapter: {{ $course->chapters->count() }}</span>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <div class="text-secondary">
@@ -58,7 +58,7 @@
                 </div>
             @endforeach
         </div>
-        @if ($courses->count() >= 5)
+        @if ($courses->count() > 5)
             <div class="mt-5 shadow-md p-3">
                 {{ $courses->links() }}
             </div>

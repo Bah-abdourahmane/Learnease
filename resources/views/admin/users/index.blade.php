@@ -1,6 +1,6 @@
 @extends('admin.dashboard-layout')
 @section('content')
-    <div class="py-5">
+    <div class="p-5">
         @if (@session('success'))
             <div class="rouded bg-green-300 p-3">User created successfully.</div>
         @endif
