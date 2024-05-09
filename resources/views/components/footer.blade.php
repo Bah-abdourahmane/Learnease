@@ -69,18 +69,17 @@
         <div class="">
             <h3 class="uppercase font-bold text-lg mb-5">About</h3>
             <div class="flex font-normal flex-col items-start gap-2">
-                <button class="active:scale-95 duration-300 hover:text-primary">About Us</button>
-                <button class="active:scale-95 duration-300 hover:text-primary">Forum Us</button>
-                <button class="active:scale-95 duration-300 hover:text-primary">Contact Us</button>
+                <a href="{{ route('about.index') }}" class="duration-300 hover:text-primary">About Us</a>
+                <a href="{{ route('forum.index') }}" class="duration-300 hover:text-primary">Forum</a>
+                <a href="{{ route('contact.index') }}" class="duration-300 hover:text-primary">Contact</a>
             </div>
         </div>
         <!--  cols 2 Catalogue-->
         <div class="">
             <h3 class="uppercase font-bold text-lg mb-5">Categories</h3>
             <div class="flex font-normal flex-col items-start gap-2">
-                <button class="active:scale-95 duration-300 hover:text-primary">Developement</button>
-                <button class="active:scale-95 duration-300 hover:text-primary">Design</button>
-                <button class="active:scale-95 duration-300 hover:text-primary">Ux Design</button>
+                <button class="hover:text-primary">Development</button>
+                <button class="hover:text-primary">Bureautique</button>
 
             </div>
         </div>

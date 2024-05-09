@@ -24,10 +24,10 @@ Route::controller(PublicController::class)->group(function () {
   Route::get('/about',  'about')->name('about.index');
   Route::get('/forum',  'forum')->name('forum.index');
   Route::get('/forum/{id}',  'forum_detail')->name('forum.show');
-  Route::get('/forum/create',  'forum_create')->name('forum.create');
-  Route::post('/forum',  'forum_store')->name('forum.store');
   Route::get('/contact',  'contact')->name('contact.index');
   Route::post('/contact',  'contact_store')->name('contact.store');
+  Route::get('/instructor/register',  'register_instructor')->name('instructor.registration.form');
+  Route::post('/instructor/register',  'register_instructor_store')->name('instructor.register');
 });
 
 // Controller middleware pour la redirection en fonction des roles

@@ -54,14 +54,18 @@ class PublicController extends Controller
         // dd($forum);
         return view("public-pages.forum.show", compact("forum"));
     }
-    public function forum_create()
-    {
-        return view("public-pages.forum.create");
-    }
-    public function forum_store()
-    {
-    }
     // =================================================
+
+    // Instructor Register
+    public function register_instructor()
+    {
+        return view("public-pages.register-instructor");
+    }
+    public function register_instructor_store()
+    {
+        return redirect()->back()->with('success', 'Votre demande pour devenir formateur a été envoyée.');
+    }
+    // ==================================================
 
     // COURSES CONTROLLER
     public function courses()
@@ -72,9 +76,7 @@ class PublicController extends Controller
     public function course_details($id)
     {
         $course = Course::with('chapters.videos')->findOrFail($id);
-        $firstVideoId = $course->chapters->first()->videos->first()->id;
-        // dd($firstVideoId);
-        return view('public-pages.courses.show', compact("course", "firstVideoId"));
+        return view('public-pages.courses.show', compact("course"));
     }
     public function course_tutoriel($id)
     {

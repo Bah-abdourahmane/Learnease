@@ -12,12 +12,9 @@
                 <p class="pr-5 pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus aperiam
                     blanditiis ipsum nihil minima error illum reprehenderit, rem exercitationem, quidem tempora quisquam
                     facilis ipsam ullam itaque dignissimos.</p>
-                <button
-                    class="hover:bg-primary text-primary hover:text-white  border  border-primary rounded font-medium duration-500">
-                    <a class="px-8 py-2 inline-block" href="#cours-cards-section">
-                        Explore More
-                    </a>
-                </button>
+                <a class="inline-block" href="#cours-cards-section">
+                    <x-ui.custom-outline-button title="Explore More" />
+                </a>
             </div>
             <!-- right image -->
             <div class="w-full lg:basis-[55%] relative">
@@ -35,9 +32,9 @@
                 <p class="mt-10 leading-7 tracking-wide">Lorem ipsum dolor sit amet. ipsum dolor sit amet consectetur
                     adipisicing elit. Eos fugiat numquam asperiores eaque deserunt aliquid quasi beatae veritatis
                     adipisci sed?</p>
-                <button
-                    class="mt-5 scale-95 hover:scale-100 w-fit hover:bg-primary text-primary hover:text-white  border  border-primary rounded px-8 py-2 font-medium active:scale-95 duration-500">Let's
-                    Get Started</button>
+                <a class="mt-5 inline-block" href="{{ route('courses.index') }}">
+                    <x-ui.custom-outline-button title="Let's Get Started" />
+                </a>
             </div>
         </section>
         <!-- popular Courses -->
@@ -58,7 +55,7 @@
                 </div>
             </div>
             <!-- course cards wrapper -->
-            <div class="lg:my-10" id="cours-cards-section">
+            <div class="lg:mt-10" id="cours-cards-section">
                 <!-- top  bar for filtering -->
                 <div class="flex justify-between items-center gap-5 flex-wrap">
                     <h2 class="font-semibold text-lg"><span class="text-primary">&bull;</span>Popular courses</h2>
@@ -79,6 +76,18 @@
                 </div>
             </div>
         </section>
+        {{-- become Teacher --}}
+        <section class="pb-10">
+            <div class="container text-center bg-gradient-to-tl from-primary/35 to-primary py-10 text-white">
+                <h2 class="text-2xl font-semibold mb-4">Devenir un Formateur</h2>
+                <p class="mb-6 max-w-xl mx-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                    tempor incididunt
+                    ut labore et dolore magna aliqua.</p>
+                <a href="{{ route('instructor.registration.form') }}"
+                    class="bg-white text-blue-500 py-2 px-4 rounded inline-block">Remplir le formulaire</a>
+            </div>
+        </section>
+
         <!-- our Teacher -->
         <section class="py-10 pt-0">
             <h3 class="title lg:text-4xl font-bold">Our Experienced Mentors</h3>
