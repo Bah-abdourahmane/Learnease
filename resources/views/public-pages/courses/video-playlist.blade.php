@@ -32,12 +32,7 @@
             <div class="flex-grow">
                 <h1 class="lg:text-3xl text-xl mb-5 font-bold">À propos de ce tutoriel</h1>
                 <p class="leading-9">
-                    Dans ce nouveau chapitre où nous allons voir ensemble le fonctionnement du Routing qui va permettre à
-                    Laravel de faire correspondre à une URL particulière un bout de code spécifique. Pour utiliser le
-                    système de
-                    Routing, on va se rendre dans le dossier routes et on va modifier le fichier web.php. A l'intérieur de
-                    ce
-                    fichier-là, on voit qu'il y a déjà une route de définie.
+                    {{ $currentVideo->description }}
                 </p>
             </div>
         </div>
