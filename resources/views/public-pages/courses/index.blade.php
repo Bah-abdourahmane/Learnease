@@ -1,7 +1,10 @@
 @extends('layouts.app-layout')
 @section('content')
-    <div class="w-full h-full p-5 lg:px-24">
-        <h2 class="title font-bold text-2xl md:text-3xl mb-10 tracking-wider">Cours en libre accès</h2>
+    <div class="w-full p-5 pb-10 lg:px-24">
+        <div class="flex justify-between w-full gap-4 items-center mb-10">
+            <h2 class="title font-bold text-2xl md:text-3xl tracking-wider">Cours en libre accès</h2>
+            <x-ui.custom-search-input />
+        </div>
         {{-- courses list container --}}
         <div class="w-full h-full space-y-5">
             @foreach ($courses as $course)

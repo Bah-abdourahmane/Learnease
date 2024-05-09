@@ -49,10 +49,18 @@
                     </div>
                     {{-- video card --}}
                     <div class="">
-                        <?php $currentVideo = $course->chapters->first()->videos->first(); ?>
-                        <video controls muted class="w-full h-[400px] rounded bg-slate-800">
-                            <source src="{{ asset($currentVideo->videoUrl()) }}" />
-                        </video>
+                        @if (
+                            $course->chapters &&
+                                $course->chapters->count() > 0 &&
+                                $course->chapters->first()->videos &&
+                                $course->chapters->first()->videos->count() > 0)
+                            <?php $currentVideo = $course->chapters->first()->videos->first(); ?>
+                            <video controls muted class="w-full h-[400px] rounded bg-slate-800">
+                                <source src="{{ asset($currentVideo->videoUrl()) }}" />
+                            </video>
+                        @else
+                            <p class="text-center">Aucune vidéo disponible pour ce cours</p>
+                        @endif
                     </div>
                 </div>
             </div>
