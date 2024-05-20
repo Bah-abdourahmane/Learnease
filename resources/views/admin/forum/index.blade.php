@@ -3,7 +3,7 @@
     <div class="w-full p-5 mb-5">
         {{-- title and searchbar --}}
         <div class="mb-5 flex items-center flex-wrap justify-between gap-5">
-            <h1 class="text-3xl font-bold">Forum de discussion</h1>
+            <h1 class="text-3xl font-bold">Forum de discussion</h1>F
             <x-ui.custom-search-input />
         </div>
         <a href="{{ route('admin.forums.create') }}"
