@@ -47,12 +47,8 @@
                     <h2 class="title font-bold text-2xl md:text-5xl tracking-wider">and find your favorite course</h2>
                 </div>
                 <!-- search input -->
-                <div
-                    class="w-full flex items-center justify-center gap-2 max-w-[600px] my-5 bg-white relative p-3 rounded shadow__1 overflow-hidden">
-                    <button type="button"
-                        class="text-sm bg-primary text-white p-2  rounded z-20 font-medium">Categories</button>
-                    <input type="search" name="" placeholder="Search for courses..." class="rounded w-full" />
-                </div>
+                <x-ui.custom-home-search-course-input name="search_course_in_home_page" :courses="$courses" :coursRecherches="$coursRecherches"
+                    :nomCoursRecherche="$nomCoursRecherche" />
             </div>
             <!-- course cards wrapper -->
             <div class="lg:mt-10" id="cours-cards-section">

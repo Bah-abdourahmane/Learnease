@@ -12,10 +12,17 @@ use Illuminate\Http\Request;
 class PublicController extends Controller
 {
     // HOME PAGE CONTROLLER
-    public function home()
+    public function home(Request $request)
     {
         $courses =  Course::with('domain')->where('is_approved', true)->orderBy('updated_at', 'desc')->limit(6)->get();
-        return view('public-pages.home', compact('courses'));
+
+        $nomCoursRecherche = $request->input('search_course_in_home_page');
+        $coursRecherches = [];
+        if ($nomCoursRecherche) {
+            $coursRecherches = Course::where('title', 'LIKE', '%' . $nomCoursRecherche . '%')->where('is_approved', true)->orderBy('created_at', 'desc')->get();
+        }
+
+        return view('public-pages.home', compact('courses', 'coursRecherches', 'nomCoursRecherche'));
     }
     // =================================================
 
@@ -68,10 +75,20 @@ class PublicController extends Controller
     // ==================================================
 
     // COURSES CONTROLLER
-    public function courses()
+    public function courses(Request $request)
     {
-        $courses = Course::with('chapters')->where('is_approved', true)->orderBy('updated_at', 'desc')->paginate(5);
-        return view('public-pages.courses.index', compact("courses"));
+        // liste de tous les courses
+        $courses = Course::with('chapters')->where('is_approved', true)->orderBy('updated_at', 'desc')->paginate(10);
+
+        // Rechercher par nom de cours
+        $nomCoursRecherche = $request->input('searchcourse');
+        // initialisation du tableau de cours trouvee
+        $coursRecherches = [];
+        if ($nomCoursRecherche) {
+            $coursRecherches = Course::where('title', 'LIKE', '%' . $nomCoursRecherche . '%')->where('is_approved', true)->orderBy('created_at', 'desc')->get();
+        }
+        // dd($coursRecherches);
+        return view('public-pages.courses.index', compact("courses", "coursRecherches", "nomCoursRecherche"));
     }
     public function course_details($id)
     {
