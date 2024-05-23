@@ -40,7 +40,10 @@
                         <x-dropdown-link :href="route('dashboard')">
                             {{ __('Dashboard') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('profile.edit')">
+                        @php
+                            $role = auth()->user()->role;
+                        @endphp
+                        <x-dropdown-link :href="route($role . '.profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 

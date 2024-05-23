@@ -2,7 +2,11 @@
 @section('content')
     <div class="p-5 pt-3">
         @if (@session('success'))
-            <div class="rounded bg-green-300 p-3 mb-3">{{ session('success') }}</div>
+            <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
+                class="flex justify-between text-sm fixed border-primary max-w-56 w-full bg-primary text-white p-5 rounded top-20 right-5 z-50">
+                {{ session('success') }}
+                <span class="font-bold text-xl cursor-pointer">X</span>
+            </p>
         @endif
         {{-- top btns --}}
         <div class="flex justify-between mb-5 flex-wrap gap-5 sticky top-0 z-20 bg-white py-2">
@@ -41,7 +45,7 @@
                             @endif
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-white opacity-40 rounded-lg">
                             </div>
-                            <button onclick="window.location='{{ route('admin.courses.show',$course->id) }}'"
+                            <button onclick="window.location='{{ route('admin.courses.show', $course->id) }}'"
                                 class="bg-white/70 p-2 px-3 font-medium tracking-wide rounded absolute  z-50 hidden group-hover:block duration-500 scale-100">See
                                 details</button>
                         </div>

@@ -18,11 +18,12 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:pr-6 lg:pr-8">
         <div class="flex items-center justify-between h-16">
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="capitalize">
+            <span class="hidden md:block"></span>
+            {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="capitalize">
                 {{ $subPath }}
-            </x-nav-link>
+            </x-nav-link> --}}
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 ">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -41,7 +42,10 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        @php
+                            $role = auth()->user()->role;
+                        @endphp
+                        <x-dropdown-link :href="route($role . '.profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -89,8 +93,8 @@
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+            <div class="mt-3 space-y-19">
+                <x-responsive-nav-link :href="route('admin.profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 

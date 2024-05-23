@@ -1,6 +1,6 @@
 <div class="h-screen basis-[20%] bg-third text-white drop-shadow-md shadow__1  flex-col p-2 hidden lg:flex ">
     {{-- logo --}}
-    <div class="font-semibold border-b border-primary/50 text-xl lg:text-2xl py-3 cursor-pointer
+    <div class="font-semibold border-b border-primary/50 text-xl  p-3 cursor-pointer
     ">
         <a href="/">Learn<span class="text-secondary">Ease</span></a>
     </div>
@@ -32,7 +32,7 @@
         </ul>
     </div>
     {{-- user profile --}}
-    <div class="mt-auto py-5">
+    <div class="mt-auto py-5 hidden">
         <div class="flex items-center gap-3">
             <span class="w-10 h-10 overflow-hidden rounded-full bg-slate-300 shrink-0 border-2 border-primary">
                 <img src="{{ asset('images/teacher-5.jpg') }}" alt="" class="rounded-full">

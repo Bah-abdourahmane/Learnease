@@ -17,9 +17,19 @@
                     </p>
                 </div>
                 @if (auth()->user())
-                    @include('partials.start-course-btn', [
-                        'path' => route('courses.videos', ['coursID' => $course->id, 'videoID' => $firstVideoId]),
-                    ])
+                    @if (
+                        $course->chapters &&
+                            $course->chapters->count() > 0 &&
+                            $course->chapters->first()->videos &&
+                            $course->chapters->first()->videos->count() > 0)
+                        <?php $currentVideo = $course->chapters->first()->videos->first(); ?>
+                        @include('partials.start-course-btn', [
+                            'path' => route('courses.videos', [
+                                'coursID' => $course->id,
+                                'videoID' => $currentVideo->id,
+                            ]),
+                        ])
+                    @endif
                 @else
                     @include('partials.start-course-btn', [
                         'path' => route('login'),
