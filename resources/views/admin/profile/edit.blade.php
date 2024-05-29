@@ -1,4 +1,4 @@
-@extends('participant.dashboard-layout')
+@extends('admin.dashboard-layout')
 @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 space-y-6">

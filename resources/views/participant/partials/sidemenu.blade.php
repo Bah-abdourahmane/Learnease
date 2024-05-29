@@ -1,6 +1,6 @@
 <div class="h-screen basis-[20%] bg-third text-white drop-shadow-md shadow__1 flex flex-col pt-2 shrink-0 ">
     {{-- logo --}}
-    <div class="font-semibold border-b border-primary/50 text-xl lg:text-2xl p-3 cursor-pointer
+    <div class="font-semibold border-b border-primary/50 text-xl p-3 cursor-pointer
 ">
         <a href="/">Learn<span class="text-secondary">Ease</span></a>
     </div>

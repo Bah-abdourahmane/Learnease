@@ -43,6 +43,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
   Route::resource('chapters', AdminChapterController::class);
   Route::resource('videos', AdminVideoController::class);
   Route::resource('forums', AdminForum::class);
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Participant routes
 Route::controller(ParticipantController::class)->prefix('participant')->middleware('participant')->name('participant.')->group(function () {
@@ -51,10 +54,16 @@ Route::controller(ParticipantController::class)->prefix('participant')->middlewa
   Route::get('/courses/{id}',  'course_details')->name('courses.show');
   Route::get('/course/tutoriel/{id}', 'tutoriel')->name('courses.tutoriel');
   Route::get('/courses/{coursID}/{videoID}', 'video_playlist')->where(['coursID' => '[0-9]+', 'videoID' => '[0-9]+'])->name('courses.videos');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Formateur routes
 Route::controller(TeacherController::class)->prefix('teacher')->middleware('teacher')->name('teacher.')->group(function () {
   Route::get('dashboard', 'dashboard')->name('index');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
   // Route::get('/courses',  'courses')->name('courses');
   // Route::get('/courses/{id}',  'course_details')->name('courses.show');
   // Route::get('/course/tutoriel/{id}', 'tutoriel')->name('courses.tutoriel');

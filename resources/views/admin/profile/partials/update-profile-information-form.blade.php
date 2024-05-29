@@ -56,10 +56,7 @@
 
             @if (session('status') === 'profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                    class="flex justify-between text-sm fixed border-primary max-w-56 w-full bg-primary text-white p-5 rounded top-20 right-5 z-50">
-                    {{ __('Saved.') }}
-                    <span class="font-bold text-xl cursor-pointer">X</span>
-                </p>
+                    class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>
             @endif
         </div>
     </form>
