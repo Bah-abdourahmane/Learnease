@@ -7,15 +7,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 
-class AdminUserController extends Controller
+class AdminFormateurController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
-        return view('admin.users.index', compact('users'));
+        $users = User::latest()->where("role", "teacher")->paginate(10);
+        return view('admin.teachers.index', compact('users'));
     }
 
     /**
@@ -23,7 +23,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.teachers.create');
     }
 
     /**
@@ -31,7 +31,6 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validatedUser = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
@@ -41,8 +40,8 @@ class AdminUserController extends Controller
         ]);
         // dd($validatedUser);
         $user = User::create($validatedUser);
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été creér.");
+        return redirect()->route('admin.teachers.index')
+            ->withSuccess("Le formateur a bien été créer.");
     }
 
     /**
@@ -50,7 +49,7 @@ class AdminUserController extends Controller
      */
     public function show(string $id)
     {
-        // return view('admin.users.show');
+        //
     }
 
     /**
@@ -58,7 +57,7 @@ class AdminUserController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.users.edit');
+        //
     }
 
     /**
@@ -66,8 +65,7 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été modifier.");
+        //
     }
 
     /**
@@ -76,7 +74,7 @@ class AdminUserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été supprimer.");
+        return redirect()->route('admin.teachers.index')
+            ->withSuccess("Le formateur a bien été supprimer.");
     }
 }

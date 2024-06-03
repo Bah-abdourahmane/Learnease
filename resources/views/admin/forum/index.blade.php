@@ -1,9 +1,10 @@
 @extends('admin.dashboard-layout')
 @section('content')
     <div class="w-full p-5 mb-5">
+        <x-ui.custom-toast />
         {{-- title and searchbar --}}
         <div class="mb-5 flex items-center flex-wrap justify-between gap-5">
-            <h1 class="text-3xl font-bold">Forum de discussion</h1>F
+            <h1 class="text-3xl font-bold">Forum de discussion</h1>
             <x-ui.custom-search-input />
         </div>
         <a href="{{ route('admin.forums.create') }}"

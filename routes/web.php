@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminChapterController;
+use App\Http\Controllers\Admin\AdminFormateurController;
 use App\Http\Controllers\Admin\AdminForum;
+use App\Http\Controllers\Admin\AdminParticipantController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminController;
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // les routes public
 Route::controller(PublicController::class)->group(function () {
-  Route::get('/',  'home');
+  Route::get('/',  'home')->name("home.index");
   Route::get('/courses',  'courses')->name('courses.index');
   Route::get('/courses/{id}',  'course_details')->name('courses.show');
   Route::get('/courses/{coursID}/{videoID}', 'video_playlist')->middleware('auth')->where(['coursID' => '[0-9]+', 'videoID' => '[0-9]+'])->name('courses.videos');
@@ -37,6 +39,8 @@ Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth'])
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
   Route::get('dashboard', [AdminController::class, 'dashboard'])->name('index');
   Route::get('teachers', [AdminController::class, 'teacher'])->name('teachers');
+  Route::resource('teachers', AdminFormateurController::class);
+  Route::resource('participants', AdminParticipantController::class);
   Route::resource('users', AdminUserController::class);
   Route::resource('courses', AdminCourseController::class);
   Route::patch('/courses/{id}/update-status', [AdminCourseController::class, 'updateStatus'])->name('courses.updateStatus');
@@ -51,7 +55,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 Route::controller(ParticipantController::class)->prefix('participant')->middleware('participant')->name('participant.')->group(function () {
   Route::get('dashboard', 'dashboard')->name('index');
   Route::get('/courses',  'courses')->name('courses');
-  Route::get('/courses/{id}',  'course_details')->name('courses.show');
+  Route::get('/courses/{id}', 'course_details')->name('courses.show');
   Route::get('/course/tutoriel/{id}', 'tutoriel')->name('courses.tutoriel');
   Route::get('/courses/{coursID}/{videoID}', 'video_playlist')->where(['coursID' => '[0-9]+', 'videoID' => '[0-9]+'])->name('courses.videos');
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

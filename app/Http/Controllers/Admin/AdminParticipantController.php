@@ -7,15 +7,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 
-class AdminUserController extends Controller
+class AdminParticipantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
-        return view('admin.users.index', compact('users'));
+        $users = User::latest()->where("role", "participant")->paginate(10);
+        return view('admin.participants.index', compact('users'));
     }
 
     /**
@@ -23,7 +23,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.participants.create');
     }
 
     /**
@@ -41,8 +41,8 @@ class AdminUserController extends Controller
         ]);
         // dd($validatedUser);
         $user = User::create($validatedUser);
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été creér.");
+        return redirect()->route('admin.participants.index')
+            ->withSuccess("Le participant a bien été creér.");
     }
 
     /**
@@ -50,7 +50,7 @@ class AdminUserController extends Controller
      */
     public function show(string $id)
     {
-        // return view('admin.users.show');
+        //
     }
 
     /**
@@ -58,7 +58,7 @@ class AdminUserController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.users.edit');
+        //
     }
 
     /**
@@ -66,8 +66,7 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été modifier.");
+        //
     }
 
     /**
@@ -77,6 +76,6 @@ class AdminUserController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été supprimer.");
+            ->withSuccess("Le participant a bien été supprimer.");
     }
 }

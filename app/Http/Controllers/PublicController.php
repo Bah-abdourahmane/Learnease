@@ -6,7 +6,9 @@ use App\Models\Chapter;
 use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Forum;
+use App\Models\User;
 use App\Models\Video;
+use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -68,9 +70,27 @@ class PublicController extends Controller
     {
         return view("public-pages.register-instructor");
     }
-    public function register_instructor_store()
+    public function register_instructor_store(Request $request)
     {
-        return redirect()->back()->with('success', 'Votre demande pour devenir formateur a été envoyée.');
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['required', 'unique:' . User::class, 'max:13'],
+            'role' => ['required'],
+            'isAccepted' => ['required'],
+        ]);
+        // dd($validatedData);
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'phone' => $validatedData['phone'],
+            'role' => $validatedData['role'],
+            'isAccepted' => $validatedData['isAccepted'],
+        ]);
+        dd($user);
+        return redirect()->route("home.index")->with('success', 'Votre demande pour devenir formateur a bien été envoyée.');
     }
     // ==================================================
 

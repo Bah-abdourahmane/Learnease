@@ -3,8 +3,8 @@
     <div class="p-5">
         <x-ui.custom-toast />
         <div class="flex justify-between mb-5">
-            <h1 class="font-semibold text-xl">List of the Teachers</h1>
-            <a href="{{ route('admin.teachers.create') }}"
+            <h1 class="font-semibold text-xl">List of the Participants</h1>
+            <a href="{{ route('admin.participants.create') }}"
                 class="block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white">Add
                 new</a>
         </div>
