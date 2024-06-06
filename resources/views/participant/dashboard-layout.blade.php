@@ -28,8 +28,8 @@
         {{-- left sideMenu --}}
         @include('participant.partials.sidemenu')
         {{-- right --}}
-        <div class="w-full h-screen flex flex-col">
-            @include('admin.navigation')
+        <div class="w-full h-screen flex flex-col flex-grow">
+            @include('participant.navigation')
             <!-- Page Content -->
             <main class="flex-grow overflow-y-auto">
                 @yield('content')

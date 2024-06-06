@@ -5,11 +5,11 @@
         'advenced' => 'Advenced',
     ];
 @endphp
-@extends('admin.dashboard-layout')
+@extends('teacher.dashboard-layout')
 @section('content')
     <div class="max-w-5xl w-full shadow-md rounded p-5 mx-auto my-5">
         <h1 class="text-center text-xl font-medium uppercase mb-10">Modifier le cours</h1>
-        <form action="{{ route('admin.courses.update', $course) }}" method="POST" class="flex flex-col gap-y-8"
+        <form action="{{ route('teacher.courses.update', $course) }}" method="POST" class="flex flex-col gap-y-8"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')

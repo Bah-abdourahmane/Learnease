@@ -16,7 +16,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $role = $request->user()->role;
+        return view($role . '.profile.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -53,7 +54,7 @@ class ProfileController extends Controller
         $user->delete();
 
         $request->session()->invalidate();
-        $request->session()->regenerateToken(); 
+        $request->session()->regenerateToken();
 
         return Redirect::to('/');
     }

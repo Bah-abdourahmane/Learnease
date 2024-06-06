@@ -23,10 +23,10 @@
 <body class="font-sans antialiased">
     <div class="flex">
         {{-- left sideMenu --}}
-        @include('admin.sidemenu')
+        @include('teacher.sidemenu')
         {{-- right --}}
         <div class="w-full h-screen flex flex-col flex-grow">
-            @include('admin.navigation')
+            @include('teacher.navigation')
             <!-- Page Content -->
             <main class="flex-grow overflow-y-auto">
                 @yield('content')

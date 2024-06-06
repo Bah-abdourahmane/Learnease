@@ -1,7 +1,7 @@
 @php
     $isCheck = $course->is_approved ? 'false' : 'true';
 @endphp
-@extends('admin.dashboard-layout')
+@extends('teacher.dashboard-layout')
 @section('content')
     <div class=" bg-third text-white relative">
         <x-ui.custom-toast />
@@ -20,15 +20,9 @@
                         Author : <span class="font-normal">{{ $course->instructor->name }}</span>
                     </p>
                     <p class="font-bold uppercase  py-5">
-                        Approved : <span
-                            class="font-normal capitalize">{{ $course->is_approved ? 'Le cours est disponible' : "Le cours n'est disponible pour le moment" }}</span>
+                        Status : <span
+                            class="font-normal capitalize">{{ $course->is_approved ? 'Cette formation est approuvé ' : 'Votre Formation est en cours de validation' }}</span>
                     </p>
-                    <div class="font-bold uppercase  py-5 flex items-center gap-2">
-                        <span>
-                            Change Course status :
-                        </span>
-                        <x-custom-switch-btn :course="$course" :isChecked="$course->is_approved" />
-                    </div>
                 </div>
             </div>
         </div>
@@ -69,11 +63,11 @@
         </div>
         {{-- button de suppression and edite --}}
         <div class="flex items-center flex-wrap gap-10 p-5">
-            <a href="{{ route('admin.courses.edit', $course) }}"
+            <a href="{{ route('teacher.courses.edit', $course) }}"
                 class="text-primary border  border-primary px-5 py-3 min-w-52 rounded">
                 Edit this course
             </a>
-            <form action="{{ route('admin.courses.destroy', $course) }}" method="POST">
+            <form action="{{ route('teacher.courses.destroy', $course) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="text-red-600  bg-red-200/20 px-5 py-3 min-w-52 rounded">

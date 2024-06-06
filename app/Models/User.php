@@ -20,9 +20,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'phone',
+        'name', 'email', 'password', 'role', 'phone', "isAccepted",
     ];
 
+    public function Courses()
+    {
+        return $this->hasMany(Course::class);
+    }
     public function favoriteCourses()
     {
         return $this->belongsToMany(Course::class, 'favorite_courses', 'user_id', 'course_id');

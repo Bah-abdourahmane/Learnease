@@ -1,9 +1,9 @@
-@extends('admin.dashboard-layout')
+@extends('teacher.dashboard-layout')
 @section('content')
     <div class="max-w-5xl w-full shadow-md rounded p-5 mx-auto my-5">
         <h1 class="text-center text-xl font-medium uppercase mb-10">
             {{ $course->exists ? 'Modifier le cours' : 'Créer un nouveau cours' }}</h1>
-        <form action="{{ $course->exists ? route('admin.courses.update', $course) : route('admin.courses.store') }}"
+        <form action="{{ $course->exists ? route('teacher.courses.update', $course) : route('teacher.courses.store') }}"
             method="POST" class="flex flex-col gap-y-8" enctype="multipart/form-data">
             @csrf
             @method($course->exists ? 'PUT' : 'POST')

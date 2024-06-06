@@ -12,10 +12,10 @@ class ParticipantController extends Controller
     {
         return view('participant.dashboard');
     }
-    // COURSES CONTROLLER
+    // COURSES CONTROLLER 
     public function courses()
     {
-        $courses = Course::orderBy('updated_at', 'desc')->paginate(5);
+        $courses = Course::with('chapters')->where('is_approved', true)->orderBy('updated_at', 'desc')->paginate(5);
         return view('participant.courses.index', compact("courses"));
     }
     public function course_details($id)

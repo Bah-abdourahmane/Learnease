@@ -13,6 +13,9 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SocialiteAuthController;
+use App\Http\Controllers\Teacher\ChapterController;
+use App\Http\Controllers\Teacher\CourseController;
+use App\Http\Controllers\Teacher\VideoController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +68,9 @@ Route::controller(ParticipantController::class)->prefix('participant')->middlewa
 // Formateur routes
 Route::controller(TeacherController::class)->prefix('teacher')->middleware('teacher')->name('teacher.')->group(function () {
   Route::get('dashboard', 'dashboard')->name('index');
+  Route::resource('courses', CourseController::class);
+  Route::resource('chapters', ChapterController::class);
+  Route::resource('videos', VideoController::class);
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

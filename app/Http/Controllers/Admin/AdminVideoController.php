@@ -87,6 +87,6 @@ class AdminVideoController extends Controller
     {
         $video->delete();
         return  redirect()->route('admin.courses.index')
-            ->with('success', "{$video->title} a bien été supprimer.");
+            ->with('success', "{$video->title} a été supprimer avec succès.");
     }
 }

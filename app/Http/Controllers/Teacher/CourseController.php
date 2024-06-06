@@ -7,13 +7,14 @@ use App\Http\Requests\Formation\CourseFormRequest;
 use App\Models\Course;
 use App\Models\Domain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::with('domain', 'instructor', 'chapters')->orderBy('updated_at', 'desc')->paginate(6);
+        $courses = Course::with('domain', 'instructor', 'chapters')->orderBy('updated_at', 'desc')->where("instructor_id", Auth::user()->id)->paginate(6);
         return view('teacher.courses.index', compact('courses'));
     }
 
@@ -35,7 +36,7 @@ class CourseController extends Controller
 
         Course::create($this->extractData($request, new Course()));
 
-        return redirect()->route('teacher.courses.index')->with('success', 'Course created successfully.');
+        return redirect()->route('teacher.courses.index')->with('success', 'La formation a été crée avec sussès');
     }
 
     /**
@@ -55,7 +56,7 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $domains = Domain::all();
-        return view('admin.courses.edit', compact('domains', 'course'));
+        return view('teacher.courses.edit', compact('domains', 'course'));
     }
 
     /**
@@ -65,15 +66,8 @@ class CourseController extends Controller
     {
         $course->update($this->extractData($request, $course));
 
-        return  redirect()->route('admin.courses.index')
-            ->with('success', "{$course->title} a bien été modifier.");
-    }
-    public function updateStatus(Request $request, $id)
-    {
-        $course = Course::findOrFail($id);
-        $course->is_approved = !$course->is_approved;
-        $course->save();
-        return redirect()->back()->with('success', 'Statut du cours mis à jour avec succès');
+        return  redirect()->route('teacher.courses.index')
+            ->with('success', "{$course->title} a été modifier avec sussès.");
     }
 
     private function extractData(CourseFormRequest $request, Course $course): array
@@ -102,7 +96,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return  redirect()->route('admin.courses.index')
-            ->with('success', "{$course->title} a bien été supprimer.");
+        return  redirect()->route('teacher.courses.index')
+            ->with('success', "{$course->title} a été supprimer avec sussès.");
     }
 }

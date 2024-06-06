@@ -28,18 +28,12 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
-            {{-- level --}}
-            <div>
-                <x-input-label for="role" :value="__('role')" />
-                <select id="role" name="role"
-                    class= 'border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary w-full py-2'>
-                    <option value="participant">
-                        Participant
-                    </option>
-                    <option value="teacher">
-                        Teacher
-                    </option>
-                </select>
+            <!-- Confirm Password -->
+            <div class="mt-4">
+                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required autocomplete="new-password" />
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
 
             <!-- Phone number -->
@@ -49,6 +43,10 @@
                     required autocomplete="phone" />
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
             </div>
+
+            <input type="hidden" name="role" value="teacher">
+            <input type="hidden" name="isAccepted" value="0">
+
             {{-- submit button --}}
             <button type="submit"
                 class="rounded duration-300 hover:bg-primary mt-5 px-5 py-2 border hover:text-white border-primary">Create

@@ -42,7 +42,7 @@ class AdminParticipantController extends Controller
         // dd($validatedUser);
         $user = User::create($validatedUser);
         return redirect()->route('admin.participants.index')
-            ->withSuccess("Le participant a bien été creér.");
+            ->withSuccess("Le participant a été creér avec succès.");
     }
 
     /**
@@ -56,17 +56,27 @@ class AdminParticipantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $participant)
     {
-        //
+        return view('admin.participants.edit', compact("participant"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $participant)
     {
-        //
+        $validatedUser = $request->validate([
+            'name' => 'required|string|max:255',
+            // 'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'phone' => 'required|string|min:9',
+            'role' => 'required|string',
+            // 'password' => ['required', Rules\Password::defaults()],
+        ]);
+        // dd($validatedUser);
+        $participant->update($validatedUser);
+        return redirect()->route('admin.participants.index')
+            ->withSuccess("Le participant a été modifier avec succès.");
     }
 
     /**
@@ -75,7 +85,7 @@ class AdminParticipantController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')
-            ->withSuccess("Le participant a bien été supprimer.");
+        return redirect()->route('admin.participqnt.index')
+            ->withSuccess("Le participant a été supprimer.");
     }
 }

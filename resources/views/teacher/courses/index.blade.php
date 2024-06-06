@@ -1,20 +1,20 @@
-@extends('admin.dashboard-layout')
+@extends('teacher.dashboard-layout')
 @section('content')
     <div class="p-5 pt-3">
         <x-ui.custom-toast />
         {{-- top btns --}}
         <div class="flex justify-between mb-5 flex-wrap gap-5 sticky top-0 z-20 bg-white py-2">
-            <h1 class="font-semibold text-xl">List of courses</h1>
+            <h1 class="font-semibold text-xl">Liste de mes  Formations</h1>
             <div class="flex items-center gap-3 flex-wrap">
-                <a href="{{ route('admin.videos.create') }}"
+                <a href="{{ route('teacher.videos.create') }}"
                     class="block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white">
                     Add new video
                 </a>
-                <a href="{{ route('admin.chapters.create') }}"
+                <a href="{{ route('teacher.chapters.create') }}"
                     class="block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white">
                     Add new Chapter
                 </a>
-                <a href="{{ route('admin.courses.create') }}"
+                <a href="{{ route('teacher.courses.create') }}"
                     class="block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white">
                     Add new Course
                 </a>
@@ -39,7 +39,7 @@
                             @endif
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-white opacity-40 rounded-lg">
                             </div>
-                            <button onclick="window.location='{{ route('admin.courses.show', $course->id) }}'"
+                            <button onclick="window.location='{{ route('teacher.courses.show', $course->id) }}'"
                                 class="bg-white/70 p-2 px-3 font-medium tracking-wide rounded absolute  z-50 hidden group-hover:block duration-500 scale-100">See
                                 details</button>
                         </div>
@@ -50,7 +50,7 @@
                                 </h4>
                                 <h4 class="font-medium hover:underline ">
                                     <a class="py-2 inline-block hover:text-secondary"
-                                        href="{{ route('admin.courses.show', $course->id) }}">
+                                        href="{{ route('teacher.courses.show', $course->id) }}">
                                         {{ Str::limit($course->title, 28, '...') }}
                                     </a>
                                 </h4>

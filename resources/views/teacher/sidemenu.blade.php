@@ -10,13 +10,13 @@
     <div class="flex-grow border-b border-primary/50 text-sm pt-5">
         <ul class="space-y-3">
             <li class="duration-300 hover:bg-primary/70 rounded-md">
-                <x-nav-link class="hover:text-white block py-2 px-4" :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                <x-nav-link class="hover:text-white block py-2 px-4" :href="route('teacher.index')" :active="request()->routeIs('teacher.index')">
                     Dashboard
                 </x-nav-link>
             </li>
             <li class="duration-300 hover:bg-primary/70 rounded-md">
-                <x-nav-link class="hover:text-white block py-2 px-4" :href="route('admin.courses.index')" :active="request()->routeIs('admin.courses.index')">
-                    My Courses
+                <x-nav-link class="hover:text-white block py-2 px-4" :href="route('teacher.courses.index')" :active="request()->routeIs('teacher.courses.index')">
+                    Mes Formations
                 </x-nav-link>
             </li>
 

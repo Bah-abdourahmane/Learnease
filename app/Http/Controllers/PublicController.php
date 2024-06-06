@@ -81,15 +81,8 @@ class PublicController extends Controller
             'isAccepted' => ['required'],
         ]);
         // dd($validatedData);
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
-            'phone' => $validatedData['phone'],
-            'role' => $validatedData['role'],
-            'isAccepted' => $validatedData['isAccepted'],
-        ]);
-        dd($user);
+        $user = User::create($validatedData);
+        // dd($user);
         return redirect()->route("home.index")->with('success', 'Votre demande pour devenir formateur a bien été envoyée.');
     }
     // ==================================================
