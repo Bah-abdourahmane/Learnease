@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Formation\VideoFormRequest;
@@ -9,14 +9,14 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class AdminVideoController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.videos.index');
+        return view('teacher.videos.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class AdminVideoController extends Controller
     public function create()
     {
         $chapters = Chapter::all();
-        return view('admin.videos.create', compact('chapters'));
+        return view('teacher.videos.create', compact('chapters'));
     }
 
     /**
@@ -34,7 +34,7 @@ class AdminVideoController extends Controller
     public function store(VideoFormRequest $request)
     {
         Video::create($this->customCreateAndUpdateData($request, new Video()));
-        return redirect()->route('admin.courses.index')->with('success', 'Video created successfully.');
+        return redirect()->route('teacher.courses.index')->with('success', 'Une nouvelle video a été ajouter.');
     }
 
     /**
@@ -51,7 +51,7 @@ class AdminVideoController extends Controller
     public function edit(Video $video)
     {
         $chapters = Chapter::all();
-        return view('admin.videos.edit', compact('chapters', 'video'));
+        return view('teacher.videos.edit', compact('chapters', 'video'));
     }
 
     /**
@@ -61,7 +61,7 @@ class AdminVideoController extends Controller
     {
         $video->update($this->extractData($request, $video));
 
-        return  redirect()->route('admin.courses.index')
+        return  redirect()->route('teacher.courses.index')
             ->with('success', "{$video->title} a bien été modifier.");
     }
 
@@ -86,7 +86,7 @@ class AdminVideoController extends Controller
     public function destroy(Video $video)
     {
         $video->delete();
-        return  redirect()->route('admin.courses.index')
+        return  redirect()->route('teacher.courses.index')
             ->with('success', "{$video->title} a été supprimer avec succès.");
     }
 }

@@ -1,4 +1,4 @@
-@props(['course'])
+@props(['course', 'href' => 'courses.show'])
 
 <div class="flex items-center lg:gap-5 flex-wrap lg:flex-nowrap rounded-lg lg:max-h-[250px] lg:min-h-[200px] shadow__1">
     {{-- left images --}}
@@ -19,7 +19,7 @@
             </h4>
             <h4 class="font-bold">
                 <a class="hover:text-primary py-2"
-                    href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a>
+                    href="{{ route($href, $course->id) }}">{{ $course->title }}</a>
             </h4>
             {{-- level and total cours --}}
             <div class="flex flex-wrap gap-5 items-center py-3">

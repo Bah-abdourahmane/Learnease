@@ -7,15 +7,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 
-class AdminUserController extends Controller
+class AdminParticipantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
-        return view('admin.users.index', compact('users'));
+        $users = User::latest()->where("role", "participant")->paginate(10);
+        return view('admin.participants.index', compact('users'));
     }
 
     /**
@@ -23,7 +23,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.participants.create');
     }
 
     /**
@@ -41,8 +41,8 @@ class AdminUserController extends Controller
         ]);
         // dd($validatedUser);
         $user = User::create($validatedUser);
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été creér.");
+        return redirect()->route('admin.participants.index')
+            ->withSuccess("Le participant a été creér avec succès.");
     }
 
     /**
@@ -50,24 +50,33 @@ class AdminUserController extends Controller
      */
     public function show(string $id)
     {
-        // return view('admin.users.show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $participant)
     {
-        return view('admin.users.edit');
+        return view('admin.participants.edit', compact("participant"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $participant)
     {
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été modifier.");
+        $validatedUser = $request->validate([
+            'name' => 'required|string|max:255',
+            // 'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'phone' => 'required|string|min:9',
+            'role' => 'required|string',
+            // 'password' => ['required', Rules\Password::defaults()],
+        ]);
+        // dd($validatedUser);
+        $participant->update($validatedUser);
+        return redirect()->route('admin.participants.index')
+            ->withSuccess("Le participant a été modifier avec succès.");
     }
 
     /**
@@ -76,7 +85,7 @@ class AdminUserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')
-            ->withSuccess("L'Utilisateur a bien été supprimer.");
+        return redirect()->route('admin.participqnt.index')
+            ->withSuccess("Le participant a été supprimer.");
     }
 }

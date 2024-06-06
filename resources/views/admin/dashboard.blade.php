@@ -4,6 +4,5 @@
         <h2 class="font-semibold text-xl text-gray-800 text-center leading-tight">
             {{ __('Admin Dashboard') }}
         </h2>
-
     </div>
 @endsection

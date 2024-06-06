@@ -1,4 +1,4 @@
-@extends('admin.dashboard-layout')
+@extends('teacher.dashboard-layout')
 @section('content')
     <div class="w-full p-5">
         <x-ui.custom-toast />

@@ -1,6 +1,7 @@
 @extends('layouts.app-layout')
 @section('content')
     <div class="px-5 lg:px-24">
+        <x-ui.custom-toast />
         <!-- banner Section -->
         <section class="w-full flex items-center flex-wrap-reverse lg:flex-nowrap py-10" id="banner">
             <!-- left text -->
@@ -73,8 +74,8 @@
             </div>
         </section>
         {{-- become Teacher --}}
-        <section class="pb-10">
-            <div class="container text-center bg-gradient-to-tl from-primary/35 to-primary py-10 text-white">
+        <section class="pb-10 w-full">
+            <div class="container mx-auto text-center bg-gradient-to-tl from-primary/35 to-primary py-10 text-white">
                 <h2 class="text-2xl font-semibold mb-4">Devenir un Formateur</h2>
                 <p class="mb-6 max-w-xl mx-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
                     tempor incididunt

@@ -47,7 +47,7 @@
                 <h1 class="text-2xl mb-5">Présentation</h1>
                 <div class="bg-[#22244d] rounded p-5 drop-shadow-md shadow-md">
                     {{-- paragraphes --}}
-                    <div class="">
+                    <div class="mb-5">
                         <p class="drop-shadow-xl">
                             {{ $course->description }}
                         </p>

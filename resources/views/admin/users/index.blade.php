@@ -1,9 +1,7 @@
 @extends('admin.dashboard-layout')
 @section('content')
     <div class="p-5">
-        @if (@session('success'))
-            <div class="rouded bg-green-300 p-3">User created successfully.</div>
-        @endif
+        <x-ui.custom-toast />
         <div class="flex justify-between mb-5">
             <h1 class="font-semibold text-xl">List of the users</h1>
             <a href="{{ route('admin.users.create') }}"
@@ -11,7 +9,7 @@
                 new</a>
         </div>
 
-        <x-custom-table :headLinks="['Name', 'Email','Phone', 'Role']">
+        <x-custom-table :headLinks="['Name', 'Email', 'Phone', 'Role']">
             @foreach ($users as $item)
                 <tr class="text-sm">
                     <td class="p-3">

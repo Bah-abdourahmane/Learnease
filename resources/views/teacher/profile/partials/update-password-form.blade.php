@@ -37,9 +37,12 @@
         <div class="flex items-center gap-4">
             <button type="submit"
                 class="rounded duration-300 hover:bg-primary mt-5 px-5 py-2 border hover:text-white border-primary max-w-40 w-full">{{ __('Save') }}</button>
-            @if (session('status') === 'password-updated')
+            @if (session('status') === 'profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>
+                    class="flex justify-between text-sm fixed border-primary max-w-56 w-full bg-primary text-white p-5 rounded top-20 right-5 z-50">
+                    {{ __('Saved.') }}
+                    <span class="font-bold text-xl cursor-pointer">X</span>
+                </p>
             @endif
         </div>
     </form>

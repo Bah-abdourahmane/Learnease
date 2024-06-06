@@ -25,7 +25,7 @@
         {{-- left sideMenu --}}
         @include('admin.sidemenu')
         {{-- right --}}
-        <div class="w-full h-screen flex flex-col">
+        <div class="w-full h-screen flex flex-col flex-grow">
             @include('admin.navigation')
             <!-- Page Content -->
             <main class="flex-grow overflow-y-auto">

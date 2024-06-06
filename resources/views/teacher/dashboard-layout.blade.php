@@ -4,14 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>LearEase</title>
+    <title>{{ config('app.name', 'LearnEase') }}</title>
 
-    <!-- Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Fonts poppins  playfair  -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -19,17 +16,17 @@
         rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/customCss.css', 'resources/js/app.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 
-<body class="h-screen w-full overflow-hidden">
+<body class="font-sans antialiased">
     <div class="flex">
         {{-- left sideMenu --}}
-        @include('participant.partials.sidemenu')
+        @include('teacher.sidemenu')
         {{-- right --}}
         <div class="w-full h-screen flex flex-col flex-grow">
-            @include('participant.navigation')
+            @include('teacher.navigation')
             <!-- Page Content -->
             <main class="flex-grow overflow-y-auto">
                 @yield('content')

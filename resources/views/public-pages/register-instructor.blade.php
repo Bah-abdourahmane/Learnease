@@ -4,7 +4,7 @@
         <div
             class="relative flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-xl">
             <div
-                class="absolute -top-2 -left-2 -right-2 -bottom-2 rounded-lg bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 shadow-lg animate-pulse">
+                class="absolute -top-1 -left-1 -right-1 -bottom-1 rounded-lg bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 shadow-lg animate-pulse">
             </div>
             {{-- wrapper grid --}}
             <div
@@ -35,6 +35,14 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
+                    <!-- Confirm Password -->
+                    <div class="mt-4">
+                        <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                        <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                            name="password_confirmation" required autocomplete="new-password" />
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+
                     <!-- Phone number -->
                     <div>
                         <x-input-label for="Phone Number" :value="__('Phone')" class="tex" />
@@ -44,6 +52,7 @@
                     </div>
 
                     <input type="hidden" name="role" value="teacher">
+                    <input type="hidden" name="isAccepted" value="0">
 
                     <div class="flex items-center justify-end pt-5 gap-5">
                         <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
@@ -54,8 +63,13 @@
                     </div>
                 </form>
                 <div
-                    class="w-full relative overflow-hidden bg-slate-100 order-first lg:order-last rounded-tr-xl rounded-br-xl">
-                    <img src="/images/course-1.jpg" alt="" class="rounded-tr-xl rounded-br-xl">
+                    class="w-full h-full relative overflow-hidden bg-slate-100 order-first lg:order-last rounded-tr-xl rounded-br-xl">
+                    <img src="/images/course-1.jpg" alt="" class="rounded-tr-xl rounded-br-xl h-full">
+
+                    <a title="aller a la home page" href="{{ route('home.index') }}"
+                        class="bg-white rounded-full absolute top-5 right-5">
+                        <x-ui.custom-circle-arrow-back />
+                    </a>
                 </div>
             </div>
         </div>
