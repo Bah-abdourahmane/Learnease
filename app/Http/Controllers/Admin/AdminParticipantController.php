@@ -85,7 +85,7 @@ class AdminParticipantController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.participqnt.index')
+        return redirect()->route('admin.participants.index')
             ->withSuccess("Le participant a été supprimer.");
     }
 }
