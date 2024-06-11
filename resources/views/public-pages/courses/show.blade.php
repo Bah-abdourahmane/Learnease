@@ -69,7 +69,8 @@
                                 <source src="{{ asset($currentVideo->videoUrl()) }}" />
                             </video>
                         @else
-                            <p class="text-center">Aucune vidéo disponible pour ce cours</p>
+                            <p class="text-center text-sm">Aucune vidéo de Présentation disponible pour cette
+                                formation</p>
                         @endif
                     </div>
                 </div>
